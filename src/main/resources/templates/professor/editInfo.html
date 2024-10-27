@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Register</title>
+
+    <style>
+        body {
+            background-color: #272f5e;
+            color: #fff;
+        }
+        /* Center container horizontally and vertically */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+
+        .card {
+            background-color: rgba(140, 118, 118, 0.51);
+            border: 1px solid rgba(14, 13, 13, 0.29);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+            max-width: 800px; /* Updated max-width */
+            padding: 30px;
+            text-align: center;
+        }
+        .btn-secondary:hover {
+            background-color: darkred;
+            opacity: 0.8;
+        }
+        .card h3 {
+            color: #000000; /* You can replace #ff0000 with your desired color code */
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="container">
+    <div class="card">
+        <form action="#" th:action="@{/professor/save}" th:object="${professor}" method="post">
+            <h3>Save information</h3>
+
+            <div class="form-group">
+                <label for="full_name">Full Name:</label>
+                <input type="hidden" th:field="*{professor_id}" />
+                <input type="hidden" th:field="*{user}" />
+                <input type="text" th:field="*{full_name}" id="full_name" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="specialty">Specialty:</label>
+                <input type="text" th:field="*{specialty}" id="specialty" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-info col-6">Save</button>
+            <br>
+            <a href="/professor/dashboard" class="btn btn-secondary mt-3 col-10" style="background-color: red;" role="button">Go Back</a>
+        </form>
+    </div>
+</div>
+
+</body>
+
+
+</html>

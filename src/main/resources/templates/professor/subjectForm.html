@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <title>Register</title>
+
+  <style>
+    body {
+      background-color: #272f5e;
+      color: #fff;
+    }
+    /* Center container horizontally and vertically */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background-color: rgba(140, 118, 118, 0.51);
+      border: 1px solid rgba(14, 13, 13, 0.29);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+      max-width: 500px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .btn-info {
+      margin: 0 auto;
+    }
+
+    .btn-secondary:hover {
+      background-color: darkred;
+      opacity: 0.8;
+    }
+
+    .card h3 {
+      color: #000000; /* You can replace #ff0000 with your desired color code */
+    }
+  </style>
+</head>
+
+
+<body>
+
+<div class="container">
+  <form action="#" th:action="@{/professor/addSubject}" th:object="${subject}" method="post">
+    <div class="card">
+      <h3>Add Subject</h3>
+
+      <div class="form-group">
+        <label for="subject_name">Subject Name:</label>
+        <input type="hidden" th:field="*{id}"/>
+        <input type="hidden" th:field="*{professor}"/>
+        <input type="text" th:field="*{subject_name}" id="subject_name" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="objective">Objective:</label>
+        <input type="text" th:field="*{objective}" id="objective" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="semester">Semester:</label>
+        <input type="text" th:field="*{semester}" id="semester" class="form-control" />
+      </div>
+
+      <button type="submit" class="btn btn-info col-6">Save</button>
+      <a href="/professor/dashboard" class="btn btn-secondary mt-3" style="background-color: darkred;" role="button">Go Back</a>
+    </div>
+  </form>
+</div>
+
+</body>
+
+</html>

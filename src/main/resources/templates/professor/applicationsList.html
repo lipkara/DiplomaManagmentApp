@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Application List</title>
+
+    <style>
+        body {
+            background-color: #272f5e;
+            color: #fff;
+        }
+
+
+        .btn-primary:hover {
+            background-color: #423406;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary:hover {
+            background-color: #0e0786;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-3rd:hover {
+            background-color: #20411d;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+
+<!-- Main content -->
+<div class="container my-4">
+
+    <!-- Application list heading -->
+    <h1 class="text-center mb-5" th:text="'Applications List for ' + ${subject.subject_name}"></h1>
+
+    <!-- Strategy form -->
+    <form action="/professor/assignSubject" method="GET">
+        <input type="hidden" name="subject_id" th:value="${subjectId}"/>
+        <div class="form-group row">
+            <label for="strategyDropdown" class="col-sm-2 col-form-label">Strategy:</label>
+            <div class="col-sm-4">
+                <select class="form-control" id="strategyDropdown" name="strategy">
+                    <option value="random">Random Choice</option>
+                    <option value="bestAvg">Best Average Courses Grade</option>
+                    <option value="fewestRemaining">Fewest Remaining Courses for Graduation</option>
+                    <option value="aboveThresh">Average Courses Grade Above Threshold and Few Remaining Courses</option>
+                </select>
+            </div>
+            <input type="hidden" name="subjectId" th:value="${subjectId}"/>
+            <div class="col-sm-2">
+                <button  type="submit" class="btn btn-primary" style="background-color: #be8514;">Assign</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Application table -->
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Year of Studies</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over each application and display its details -->
+        <tr th:each="myapplication : ${applications}">
+            <td th:text="${myapplication.getApplication_id()}"></td>
+            <td th:text="${myapplication.getStudent().getFull_name()}"></td>
+            <td th:text="${myapplication.getStudent().getYear_of_studies()}"></td>
+            <td>
+                <form th:action="@{/professor/assignParticular}" method="post">
+                    <input type="hidden" name="subject_id" th:value="${myapplication.getSubject().getId()}"/>
+                    <input type="hidden" name="student_id" th:value="${myapplication.getStudent().getId()}"/>
+                    <button type="submit" class="btn btn-secondary" style="background-color: #1993ce;">Assign</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-right mt-4">
+        <a href="/professor/subjectsList" class="btn btn-3rd" role="button" style="background-color: green;">Subject List</a>
+    </div>
+
+</div>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"
+        integrity="sha256-0JZBd/lwQ+SErbB0g0j3zAajJ6vKj6lXU6UI3ti6L/8="
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6IXQdebFze12+XpLkymx4lw6HDoczx6Vr4LHXa0qDlYfW2aYI0+Evc"
+        crossorigin="anonymous"></script>
+</body>
+
+
+</html>

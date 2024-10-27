@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Subject List</title>
+
+    <style>
+        body {
+            background-color: #272f5e;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: darkred;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: darkblue;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .btn-secondary:hover {
+            background-color: #381616;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<!-- Main content -->
+<div class="container my-4">
+
+    <!-- Subject list heading -->
+    <h1 class="text-center mb-5">Detailed subject information</h1>
+
+    <!-- Subject table -->
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>Subject Name</th>
+            <th>Objective</th>
+            <th>Semester</th>
+            <th>Supervisor</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over each subject and display its details -->
+        <tr th:object="  ${subject}">
+            <td th:text="${subject.subject_name}"></td>
+            <td th:text="${subject.objective}"></td>
+            <td th:text="${subject.semester}"></td>
+            <td th:text="${subject.getProfessor().getFull_name()}"></td>
+            <td>
+                <form th:action="@{/student/ApplicationCreate}" method="post">
+                    <input type="hidden" name="subject_id" th:value="${subject.id}"/>
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a href="/student/dashboard" class="btn btn-secondary float-right mb-3"  role="button" style="background-color: green;">Student Dashboard</a>
+    </div>
+
+
+</div>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"
+        integrity="sha256-0JZBd/lwQ+SErbB0g0j3zAajJ6vKj6lXU6UI3ti6L/8="
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6IXQdebFze12+XpLkymx4lw6HDoczx6Vr4LHXa0qDlYfW2aYI0+Evc"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

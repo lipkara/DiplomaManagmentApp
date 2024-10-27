@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #272f5e;
+            color: #fff;
+        }
+        /* Header Styles */
+        .header {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin-top: 0;
+            margin-bottom: 0;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Button Styles */
+        .btn-custom {
+            background-color: #593e0a;
+            color: white;
+        }
+
+        .btn-custom-alt {
+            background-color: #6a27ab;
+            color: white;
+        }
+        .btn-custom-control {
+            background-color: #ec6d0d;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: #744f15;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-custom-alt:hover {
+            background-color: #8b3fc3;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .btn-custom-control:hover {
+            background-color: #ab6506;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:hover,
+        .btn-warning:hover,
+        .btn-danger:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Content Styles */
+        .content {
+            margin-top: 50px;
+        }
+
+        .label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .value {
+            font-size: 16px;
+            margin-left: 10px;
+        }
+    </style>
+
+    <title>Professor Dashboard</title>
+</head>
+
+
+<body>
+
+<div class="header">
+    <div class="container">
+        <h2>Welcome to Professor Dashboard</h2>
+    </div>
+</div>
+
+<div class="container content">
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h4 class="text-center">Logged as: <span class="text-primary" th:text="${username}"></span></h4>
+            <h4 class="text-center">Has role: <span class="text-primary" th:text="${role}"></span></h4>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mb-4">
+        <div class="col-sm-12 col-md-4">
+            <a th:href="@{/}" class="btn btn-primary btn-block">Home</a>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <a th:href="@{/professor/editProfessorInfo}" class="btn btn-warning btn-block">Edit Profile</a>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <a th:href="@{/logout}" class="btn btn-danger btn-block">Logout</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <h4 class="text-center">Manage Subjects</h4>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-sm-12 col-md-4">
+            <a th:href="@{/professor/showSubjectForm}" class="btn btn-custom btn-block">Add Subject</a>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <a th:href="@{/professor/subjectsList}" class="btn btn-custom-alt btn-block">Subject List</a>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <a th:href="@{/professor/thesisList}" class="btn btn-custom-control btn-block">Thesis List</a>
+        </div>
+
+    </div>
+    <span th:utext="${applied}"></span>
+
+
+
+</div>
+
+</body>
+</html>
